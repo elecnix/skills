@@ -24,7 +24,7 @@ Generate a standalone CLI for Craft.do document management using MCP. Create, se
 npx mcporter generate-cli --name craft --compile --server <your-craft-mcp-url>
 ```
 
-### [onetimesecret](skills/onetimesecret/)
+### [onetimesecret](onetimesecret/)
 
 Secure credential handoff via OneTimeSecret.com. Ask users for passwords, API keys, or other secrets **without the secret being visible to the agent**. Creates a one-time URL the user visits in their browser, then pipes the secret directly to a command or file.
 
