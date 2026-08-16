@@ -44,6 +44,18 @@ Secure credential handoff via OneTimeSecret.com. Ask users for passwords, API ke
 ./onetimesecret.sh --wait 120 --passphrase "Enter code: 4291" --file /tmp/secret.txt
 ```
 
+### [vimeo](skills/vimeo/)
+
+Download videos from Vimeo (including private/unlisted hash links) at maximum quality with yt-dlp. Vimeo blocks anonymous downloads since mid-2026 (Cloudflare Turnstile + login requirement), so the skill extracts session cookies from the user's logged-in Chrome via CDP and downloads with them.
+
+**Requirements:** yt-dlp nightly (2026.08+), ffmpeg, Vimeo account (free) logged in in Chrome, Node.js 22+ (for the CDP cookie helper)
+
+```bash
+node skills/vimeo/get-vimeo-cookies.mjs /tmp/vimeo_cookies.txt
+# then
+yt-dlp --cookies /tmp/vimeo_cookies.txt -f "bestvideo+bestaudio/best" --merge-output-format mp4 -o out.mp4 "https://vimeo.com/<id>/<hash>"
+```
+
 ## What are Skills?
 
 Skills are reusable capabilities for AI agents. They provide procedural knowledge that helps agents accomplish specific tasks more effectively. Learn more at [agentskills.io](https://agentskills.io).
