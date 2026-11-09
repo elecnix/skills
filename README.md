@@ -44,6 +44,19 @@ Secure credential handoff via OneTimeSecret.com. Ask users for passwords, API ke
 ./onetimesecret.sh --wait 120 --passphrase "Enter code: 4291" --file /tmp/secret.txt
 ```
 
+### [terminal-shot](skills/terminal-shot/)
+
+Capture terminal screenshots as PNG or SVG for pull requests, docs and cards, with termframe (preferred, emulates a full-screen TUI) or termshot (fallback). Covers macOS and Linux, the font setup that keeps blocks, box-drawing and Nerd Font glyphs seamless, and a check that proves the font renders correctly.
+
+**Requirements:** termframe 0.10+, rsvg-convert (librsvg), JetBrains Mono, Symbols Nerd Font (for private-use glyphs)
+
+```bash
+tmux capture-pane -e -p -t cap > /tmp/screen.ansi
+termframe -W 140 -H 26 -o /tmp/shot.svg < /tmp/screen.ansi
+rsvg-convert -z 2 -o /tmp/shot.png /tmp/shot.svg
+python3 skills/terminal-shot/scripts/fontcheck.py --config ~/.config/termframe/config.toml
+```
+
 ### [vimeo](skills/vimeo/)
 
 Download videos from Vimeo (including private/unlisted hash links) at maximum quality with yt-dlp. Vimeo blocks anonymous downloads since mid-2026 (Cloudflare Turnstile + login requirement), so the skill extracts session cookies from the user's logged-in Chrome via CDP and downloads with them.
